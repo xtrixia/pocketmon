@@ -1,11 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useQuery } from "@apollo/client";
+
+// import logo from "./logo.svg";
+import "./App.css";
+import { GET_POKEMONS } from "../graphql/queries";
 
 function App() {
+  const { loading, error, data } = useQuery(GET_POKEMONS);
+  console.log(data);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

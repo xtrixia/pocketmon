@@ -7,6 +7,7 @@ export const COLORS = {
   white: "#F2F2F2",
   white2: "#E0E0E0",
   dark: "#212121",
+  none: "transparent",
   // grouping
   rock: "#A1A1A1",
   grass: "#70A83B",

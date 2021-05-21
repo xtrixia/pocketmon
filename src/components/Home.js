@@ -39,11 +39,7 @@ function Home() {
 
       <footer
         className={css`
-          bottom: 0;
-          position: absolute;
-          margin: ${SPACINGS.md} 0;
           text-align: center;
-          width: 100%;
         `}
       >
         Icons made by{" "}

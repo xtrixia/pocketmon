@@ -6,6 +6,7 @@ export const COLORS = {
   danger: "#D93E30",
   white: "#F2F2F2",
   white2: "#E0E0E0",
+  purewhite: "#FFF",
   dark: "#212121",
   none: "transparent",
   // grouping
@@ -26,6 +27,10 @@ export const COLORS = {
   fairy: "#A974BC",
   ground: "#9B897B",
   electric: "#F7C545",
+  // stats
+  others: "#359143",
+  attack: "#D93E30",
   // custom
   lightgrey: "#EDEDED",
+
 };

@@ -1,5 +1,6 @@
 import { css } from "@emotion/css";
 import { Link } from "react-router-dom";
+import { useState, createContext } from "react";
 
 import Typography from "../ui_palette/Typography";
 import MapSVG from "../assets/map.svg";
@@ -24,9 +25,15 @@ const anchorStyle = css`
   color: ${COLORS.dark};
 `;
 
+export const PokeContext = createContext();
+
 function Home() {
+  const [currentPokemon, setCurrentPokemon] = useState({});
+
   return (
-    <>
+    <PokeContext.Provider
+      value={{ pokemon: currentPokemon, setCurrentPokemon }}
+    >
       <Link to="/pocket" className={buttonStyle}>
         <img src={PokeBallsSVG} width="150px" alt="my pokeballs" />
         <Typography variant="subtitle">My Pokémon List</Typography>
@@ -59,7 +66,7 @@ function Home() {
           www.flaticon.com
         </a>
       </footer>
-    </>
+    </PokeContext.Provider>
   );
 }
 

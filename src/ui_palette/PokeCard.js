@@ -6,11 +6,13 @@ import Typography from "./Typography";
 
 import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
+import { BREAKPOINTS } from "../root/breakpoints";
 
-function PokeCard({ className, title, imgUrl, totalOwned }) {
+function PokeCard({ className, imgUrl, onClick, title, totalOwned }) {
   return (
     <Link
       to={`/profile/${title}`}
+      onClick={onClick}
       className={clsx(
         className,
         css`
@@ -29,7 +31,7 @@ function PokeCard({ className, title, imgUrl, totalOwned }) {
           width: 100px;
           background: ${COLORS.white2};
 
-          @media (min-width: 600px) {
+          @media (min-width: ${BREAKPOINTS.sm}) {
             width: 250px;
           }
         `}
@@ -43,7 +45,7 @@ function PokeCard({ className, title, imgUrl, totalOwned }) {
           justify-content: center;
           flex-direction: column;
 
-          @media (min-width: 600px) {
+          @media (min-width: ${BREAKPOINTS.sm}) {
             padding: ${SPACINGS.lg};
           }
         `}

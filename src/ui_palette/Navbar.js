@@ -24,6 +24,7 @@ const topHeader = css`
 const logo = css`
   flex-grow: 1;
   padding: 0 ${SPACINGS.xxl};
+  cursor: pointer;
   @media (min-width: ${BREAKPOINTS.sm}) {
     flex-grow: 0;
     width: 350px;
@@ -37,6 +38,7 @@ const logoCenter = css`
 const cta = css`
   width: 15%;
   @media (min-width: ${BREAKPOINTS.sm}) {
+    cursor: pointer;
     width: 10%;
   }
   @media (min-width: ${BREAKPOINTS.lg}) {

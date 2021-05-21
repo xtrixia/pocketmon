@@ -15,7 +15,6 @@ function MyList() {
       <Typography variant="h2" className={heading}>
         800 Pokémon you have owned
       </Typography>
-      <Link to="/">Back</Link>
     </>
   );
 }

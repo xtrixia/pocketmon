@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { withRouter } from "react-router-dom";
 import { css } from "@emotion/css";
@@ -8,12 +9,14 @@ import Typography from "../ui_palette/Typography";
 import { GET_POKEMONS } from "../graphql/queries";
 import { SPACINGS } from "../root/spacings";
 import { BREAKPOINTS } from "../root/breakpoints";
+import SearchBar from "../ui_palette/SearchBar";
 
 const heading = css`
   padding: ${SPACINGS.md} 0;
 `;
 
 function List() {
+  const [search, setSearch] = useState("");
   // const [currentPokemon, setCurrentPokemon] = useState({});
 
   const { loading, error, data } = useQuery(GET_POKEMONS, {
@@ -30,6 +33,8 @@ function List() {
       <Typography variant="h2" className={heading}>
         What Pokémon are you looking for?
       </Typography>
+
+      <SearchBar value={search} onSearch={(value) => setSearch(value)} />
 
       {loading && <p>Loading...</p>}
 

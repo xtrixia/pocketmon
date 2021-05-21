@@ -17,4 +17,6 @@ export const COLORS = {
   posion: "#A974BC",
   ground: "#9B897B",
   electric: "#F7C545",
+  // custom
+  lightgrey: "#EDEDED",
 };

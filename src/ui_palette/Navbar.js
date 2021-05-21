@@ -46,6 +46,14 @@ const cta = css`
   }
 `;
 
+const backButton = css`
+  padding: ${SPACINGS.xxs};
+  background: ${COLORS.white};
+  box-shadow: 1px 2px;
+  border-radius: 5px;
+  border: 1px solid ${COLORS.dark};
+`;
+
 function Navbar() {
   const history = useHistory();
   const location = useLocation();
@@ -56,7 +64,7 @@ function Navbar() {
     <header>
       <div className={clsx(topHeader, isHomePage && logoCenter)}>
         {!isHomePage && (
-          <button onClick={() => history.goBack()}>
+          <button className={backButton} onClick={() => history.goBack()}>
             <img src={LeftArrowSVG} alt="navbar logo" width="16px" />
           </button>
         )}

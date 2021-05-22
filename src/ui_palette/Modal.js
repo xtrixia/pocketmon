@@ -4,12 +4,17 @@ import Typography from "./Typography";
 
 import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
+import { BREAKPOINTS } from "../root/breakpoints";
 
 const stadium = css`
   border-radius: 2rem;
   background: ${COLORS.primary};
   padding: ${SPACINGS.lg};
   margin: ${SPACINGS.md};
+  @media (min-width: ${BREAKPOINTS.sm}) {
+    width: 500px;
+    align-self: center;
+  }
 `;
 
 function Modal({ content, children }) {

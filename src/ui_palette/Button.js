@@ -17,7 +17,7 @@ function Button({ children, fullWidth, type, ...props }) {
     <button
       className={css`
         width: ${fullWidth ? "100%" : "fit-content"};
-        padding: ${SPACINGS.xxs};
+        padding: ${SPACINGS.xs};
         background: ${backgroundStyle};
         box-shadow: ${boxShadowStyle};
         border-radius: 5px;

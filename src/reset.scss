@@ -108,6 +108,11 @@ section {
 body {
   line-height: 1;
 }
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 ol,
 ul {
   list-style: none;

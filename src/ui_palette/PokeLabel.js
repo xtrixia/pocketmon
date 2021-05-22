@@ -14,14 +14,16 @@ const labelStyle = css`
   width: fit-content;
 `;
 
-function PokeLabel({ text }) {
+function PokeLabel({ text, className }) {
   return (
     <Typography
       variant="subtitle"
       className={clsx(
         labelStyle,
+        className,
         css`
           background: ${COLORS[text] || COLORS.normal};
+          align-self: center;
         `
       )}
     >

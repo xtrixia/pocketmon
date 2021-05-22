@@ -65,13 +65,13 @@ function Navbar() {
       <div className={clsx(topHeader, isHomePage && logoCenter)}>
         {!isHomePage && (
           <button className={backButton} onClick={() => history.goBack()}>
-            <img src={LeftArrowSVG} alt="navbar logo" width="16px" />
+            <img src={LeftArrowSVG} alt="Left arrow" width="16px" />
           </button>
         )}
 
         <img
           src={LogoSVG}
-          alt="Pockétmon"
+          alt="Pockétmon logo"
           width="200px"
           role="button"
           className={logo}
@@ -82,7 +82,7 @@ function Navbar() {
         {!isHomePage && (
           <img
             src={PokeBallsSVG}
-            alt="My Pokémon List"
+            alt="My Pokémon list"
             width="45px"
             role="button"
             className={cta}

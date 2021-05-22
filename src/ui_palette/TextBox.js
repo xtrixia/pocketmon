@@ -2,7 +2,15 @@ import { css } from "@emotion/css";
 import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
 
-function SearchBar({ id, fullWidth, label, placeholder, value, onSearch }) {
+function TextBox({
+  id,
+  fullWidth,
+  label,
+  placeholder,
+  value,
+  width,
+  onSearch,
+}) {
   return (
     <div
       className={css`
@@ -11,7 +19,7 @@ function SearchBar({ id, fullWidth, label, placeholder, value, onSearch }) {
       `}
     >
       <label
-        for={id}
+        htmlFor={id}
         className={css`
           padding-left: ${SPACINGS.sm};
           padding-bottom: ${SPACINGS.xxs};
@@ -25,7 +33,7 @@ function SearchBar({ id, fullWidth, label, placeholder, value, onSearch }) {
         type="text"
         placeholder={placeholder}
         className={css`
-          width: ${fullWidth ? "100%" : "fit-content"};
+          width: ${fullWidth ? "100%" : width ? width : "auto"};
           font-family: Karla, sans-serif;
           border: 1px solid ${COLORS.dark};
           border-radius: 2rem;
@@ -33,9 +41,9 @@ function SearchBar({ id, fullWidth, label, placeholder, value, onSearch }) {
           padding: ${SPACINGS.xs} ${SPACINGS.sm};
         `}
         value={value}
-        onClick={onSearch}
+        onChange={onSearch}
       />
     </div>
   );
 }
-export default SearchBar;
+export default TextBox;

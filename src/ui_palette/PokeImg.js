@@ -27,10 +27,6 @@ const medium = css`
   }
 `;
 
-const large = css`
-  width: 350px;
-`;
-
 function PokeImg({ alt, background, className, img, type, ...props }) {
   let imgType = "";
 
@@ -40,9 +36,6 @@ function PokeImg({ alt, background, className, img, type, ...props }) {
       break;
     case "medium":
       imgType = medium;
-      break;
-    case "large":
-      imgType = large;
       break;
     default:
       imgType = xsmall;

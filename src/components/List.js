@@ -9,6 +9,8 @@ import { GET_POKEMONS } from "../graphql/queries";
 import { SPACINGS } from "../root/spacings";
 import { BREAKPOINTS } from "../root/breakpoints";
 
+import { useLocalStorage } from "../helpers";
+
 const heading = css`
   padding: ${SPACINGS.md} 0;
 `;
@@ -18,9 +20,15 @@ function List() {
     fetchPolicy: "cache-first",
   });
 
+  const [persistedPokemons] = useLocalStorage("pokemons", []);
+
   return (
     <>
       <Typography variant="h2" className={heading}>
+        {persistedPokemons?.length} Pokémon(s) you have owned.
+      </Typography>
+
+      <Typography variant="h3" className={heading}>
         What Pokémon are you looking for?
       </Typography>
 

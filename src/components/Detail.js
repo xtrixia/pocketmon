@@ -33,7 +33,7 @@ const sectionTypes = css`
 const sectionMoves = css`
   display: grid;
   grid-gap: ${SPACINGS.sm};
-  grid-template-columns: repeat(3, 100px);
+  grid-template-columns: repeat(2, 100px);
   margin-bottom: ${SPACINGS.md};
   & li {
     cursor: pointer;

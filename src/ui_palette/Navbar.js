@@ -60,11 +60,25 @@ function Navbar() {
 
   const isHomePage = location.pathname === "/";
 
+  const handleRoute = () => {
+    switch (location.pathname) {
+      case "/pocket":
+        history.goBack();
+        break;
+      case "/profile/:id":
+        history.push("/list");
+        break;
+      default:
+        history.push("/");
+        break;
+    }
+  };
+
   return (
     <header>
       <div className={clsx(topHeader, isHomePage && logoCenter)}>
         {!isHomePage && (
-          <button className={backButton} onClick={() => history.goBack()}>
+          <button className={backButton} onClick={handleRoute}>
             <img src={LeftArrowSVG} alt="Left arrow" width="16px" />
           </button>
         )}

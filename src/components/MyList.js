@@ -1,4 +1,4 @@
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { css } from "@emotion/css";
 
 import Typography from "../ui_palette/Typography";

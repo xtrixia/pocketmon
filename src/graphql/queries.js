@@ -51,3 +51,11 @@ export const GET_POKEMON_BY_NAME = gql`
     }
   }
 `;
+
+export const GET_ABILITY_INFO = gql`
+  query ability($ability: String!) {
+    ability(ability: $ability) {
+      response
+    }
+  }
+`;

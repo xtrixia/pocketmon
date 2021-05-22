@@ -1,6 +1,9 @@
 import clsx from "clsx";
 import { css } from "@emotion/css";
 
+import { SPACINGS } from "../root/spacings";
+import { COLORS } from "../root/colors";
+
 function Typography({ className, variant, ...props }) {
   let Component = generateTag(variant);
 
@@ -64,9 +67,29 @@ function generateStyle(variant) {
     case "subtitle":
       return {
         fontWeight: 400,
+        fontFamily: "Karla, sans-serif",
         fontSize: "1rem",
         lineHeight: 1.75,
         letterSpacing: "0.00938em",
+      };
+    case "subheading1":
+      return {
+        padding: `${SPACINGS.md} 0`,
+        fontFamily: `"Lora", serif`,
+        fontWeight: 300,
+        fontSize: "3.75rem",
+        lineHeight: 1.2,
+        letterSpacing: "-0.00833em",
+      };
+    case "subheading2":
+      return {
+        padding: `${SPACINGS.md} 0`,
+        fontFamily: `"Lora", serif`,
+        color: COLORS.dark,
+        fontWeight: 400,
+        fontSize: "2.125rem",
+        lineHeight: 1.235,
+        letterSpacing: "0.00735",
       };
     default:
       return {
@@ -80,7 +103,16 @@ function generateStyle(variant) {
 
 function generateTag(variant) {
   const variants = ["h1", "h2", "h3", "h4", "h5", "h6"];
-  return variants.includes(variant) ? variant : "p";
+  const subheadings = ["subheading1", "subheading2"];
+
+  switch (variant) {
+    case variants.includes(variant):
+      return variant;
+    case subheadings.includes(variant):
+      return variant === "subheading1" ? "h2" : "h4";
+    default:
+      return "p";
+  }
 }
 
 export default Typography;

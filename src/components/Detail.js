@@ -1,18 +1,19 @@
-/**
- * @todo
- * [ ] catch pokemon possibility rate up to 50%
- */
-import { useState } from "react";
+import React, { useState } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { css } from "@emotion/css";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 
-import Typography from "../ui_palette/Typography";
 import PokeLabel from "../ui_palette/PokeLabel";
 import PokeImg from "../ui_palette/PokeImg";
-import OpenPokeballSVG from "../assets/open-pokeball.svg";
+import ProgressBar from "../ui_palette/ProgressBar";
+import Typography from "../ui_palette/Typography";
+import TextBox from "../ui_palette/TextBox";
+import Overlay from "../ui_palette/Overlay";
+import Button from "../ui_palette/Button";
 import CloseCircleSVG from "../assets/close-circle.svg";
+import GotchaSVG from "../assets/gotcha.svg";
+import FootprintsSVG from "../assets/footprints.svg";
 
 import { GET_POKEMON_BY_NAME, GET_ABILITY_INFO } from "../graphql/queries";
 import { BREAKPOINTS } from "../root/breakpoints";
@@ -24,8 +25,8 @@ import {
   marginBottomMd,
   marginBottomXxl,
   marginRightMd,
-  textAlignCenter,
 } from "../root/styles";
+import { generateGotchaPossibility } from "../helpers";
 
 const sectionTypes = css`
   display: flex;
@@ -47,57 +48,6 @@ const sectionMoves = css`
   @media (min-width: ${BREAKPOINTS.lg}) {
     grid-template-columns: repeat(10, 100px);
     justify-content: space-around;
-  }
-`;
-
-const sectionStatsGrouping = css`
-  display: grid;
-  grid-gap: ${SPACINGS.sm};
-  grid-template-columns: repeat(6, 45px);
-  @media (min-width: ${BREAKPOINTS.sm}) {
-    grid-template-columns: repeat(6, 1fr);
-  }
-`;
-
-const sectionStats = css`
-  display: grid;
-  grid-gap: ${SPACINGS.xxs};
-  grid-template-rows: 80px 20px;
-`;
-
-const statsBar = css`
-  height: 100%;
-  border: 1px solid ${COLORS.purewhite};
-`;
-
-const cta = css`
-  background: ${COLORS.none};
-  border: none;
-  position: relative;
-  left: 30%;
-  cursor: pointer;
-  @media (min-width: ${BREAKPOINTS.sm}) {
-    left: 40%;
-  }
-  @media (min-width: ${BREAKPOINTS.md}) {
-    left: 45%;
-  }
-  @media (min-width: ${BREAKPOINTS.lg}) {
-    position: unset;
-  }
-`;
-
-const ctaLogo = css`
-  width: 15%;
-  border-radius: 50%;
-  background: ${COLORS.primary};
-  padding: ${SPACINGS.sm};
-  @media (min-width: ${BREAKPOINTS.sm}) {
-    cursor: pointer;
-    width: 20%;
-  }
-  @media (min-width: ${BREAKPOINTS.lg}) {
-    width: 50%;
   }
 `;
 
@@ -144,6 +94,7 @@ function Detail({ match, location }) {
   const [getAbilityInfo, { loading: getAbilityInfoLoading }] = useLazyQuery(
     GET_ABILITY_INFO,
     {
+      fetchPolicy: "cache-first",
       onCompleted: (res) => {
         const result = res?.ability?.response?.effect_entries;
         const findResultEN = result.find(
@@ -171,16 +122,77 @@ function Detail({ match, location }) {
     setToggleAbilityInfo(emptyAbilityInfo);
   };
 
+  const [gotchaPossibility, setGotchaPossibility] = useState(-1);
+
+  const catchPokemon = () => {
+    const possibility = generateGotchaPossibility();
+
+    setTimeout(() => {
+      setGotchaPossibility(possibility);
+    }, 200);
+
+    setGotchaPossibility(-1);
+  };
+  console.log(gotchaPossibility);
+
   return (
     <div>
       {loading && <p>Loading...</p>}
 
       {error && <p>Error!</p>}
 
+      {/* {gotchaPossibility === 0 && (
+        <Overlay>
+          <PokeImg src={GotchaSVG} type="small" />
+          <Typography
+            variant="h2"
+            className={marginBottomMd}
+          >{`You've got ${currentPokemonName}!`}</Typography>
+          <TextBox
+            fullWidth
+            id="detail-nickname-input"
+            label="Nickname"
+            placeholder="Your Pokémon's Nickname"
+          />
+          <div
+            className={css`
+              display: flex;
+              justify-content: space-between;
+              & button {
+                margin: ${SPACINGS.sm};
+              }
+              & button:first-child {
+                color: ${COLORS.danger};
+                font-weight: bold;
+              }
+            `}
+          >
+            <Button type="outline">Skip</Button>
+            <Button>Add to my Pockétmon</Button>
+          </div>
+        </Overlay>
+      )} */}
+      
+      {/* <Overlay>
+        <PokeImg src={FootprintsSVG} type="small" />
+        <Typography variant="h2" className={marginBottomMd}>
+          They're running away...
+        </Typography>
+        <Button>Try again</Button>
+      </Overlay> */}
+
       {data && (
         <>
           <div className={sectionTop}>
-            <div>
+            <div
+              className={css`
+                margin-bottom: ${SPACINGS.sm};
+                @media (min-width: ${BREAKPOINTS.sm}) {
+                  margin-bottom: 0;
+                  margin-right: ${SPACINGS.xxl};
+                }
+              `}
+            >
               <PokeImg
                 img={currentPokemonImg}
                 alt={currentPokemonName}
@@ -191,24 +203,42 @@ function Detail({ match, location }) {
                 `}
               />
 
-              <button id="detail-catch-button" className={cta}>
-                <img
-                  src={OpenPokeballSVG}
-                  alt="Open pokeball"
-                  className={ctaLogo}
-                />
+              <Button fullWidth onClick={catchPokemon}>
                 <Typography variant="subtitle">
                   Catch {currentPokemonName}
                 </Typography>
-              </button>
+              </Button>
             </div>
 
-            <div>
-              <Typography variant="subheading1">
+            <div
+              className={css`
+                flex-grow: 1;
+              `}
+            >
+              <Typography
+                variant="subheading1"
+                className={css`
+                  text-align: center;
+                  @media (min-width: ${BREAKPOINTS.sm}) {
+                    text-align: justify;
+                  }
+                `}
+              >
                 {currentPokemonName}
               </Typography>
 
-              <section className={clsx(sectionTypes, marginBottomMd)}>
+              <section
+                className={clsx(
+                  sectionTypes,
+                  marginBottomMd,
+                  css`
+                    justify-content: center;
+                    @media (min-width: ${BREAKPOINTS.sm}) {
+                      justify-content: flex-start;
+                    }
+                  `
+                )}
+              >
                 {data?.pokemon?.types?.map((type, index) => (
                   <PokeLabel
                     key={index}
@@ -218,38 +248,46 @@ function Detail({ match, location }) {
                 ))}
               </section>
 
-              <section id="stats-section" className={marginBottomXxl}>
-                <section className={sectionStatsGrouping}>
-                  {data?.pokemon?.stats?.map((stats, index) => (
-                    <div className={sectionStats} key={index}>
-                      <div
+              <dl
+                id="stats-section"
+                className={clsx(
+                  marginBottomXxl,
+                  css`
+                    max-width: 50rem;
+                  `
+                )}
+              >
+                {data?.pokemon?.stats?.map((stats, index) => (
+                  <React.Fragment key={index}>
+                    <dt>
+                      <Typography
+                        variant="body"
                         className={clsx(
-                          statsBar,
+                          fontBold,
                           css`
-                            background: ${stats?.stat?.name.includes("attack")
-                              ? COLORS.attack
-                              : COLORS.others};
+                            text-align: center;
+                            @media (min-width: ${BREAKPOINTS.sm}) {
+                              text-align: justify;
+                            }
                           `
                         )}
                       >
-                        <div
-                          className={css`
-                            height: ${100 - stats?.base_stat}px;
-                            background: ${COLORS.purewhite};
-                          `}
-                        />
-                      </div>
-
-                      <Typography
-                        variant="body"
-                        className={clsx(textAlignCenter, fontBold)}
-                      >
                         {stats?.stat?.name}
                       </Typography>
-                    </div>
-                  ))}
-                </section>
-              </section>
+                    </dt>
+                    <dd>
+                      <ProgressBar
+                        value={stats?.base_stat}
+                        color={
+                          stats?.stat?.name.includes("attack")
+                            ? COLORS.attack
+                            : COLORS.others
+                        }
+                      />
+                    </dd>
+                  </React.Fragment>
+                ))}
+              </dl>
             </div>
           </div>
 

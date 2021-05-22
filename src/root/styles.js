@@ -6,6 +6,10 @@ export const textAlignCenter = css`
   text-align: center;
 `;
 
+export const textAlignJustify = css`
+  text-align: justify;
+`;
+
 export const fontBold = css`
   font-weight: bold !important;
 `;

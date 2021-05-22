@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { css } from "@emotion/css";
 import { useHistory, useLocation, withRouter } from "react-router-dom";
 
+import Button from "./Button";
 import LeftArrowSVG from "../assets/left-arrow.svg";
 import LogoSVG from "../assets/logo.svg";
 import PokeBallsSVG from "../assets/pokeballs.svg";
@@ -46,14 +47,6 @@ const cta = css`
   }
 `;
 
-const backButton = css`
-  padding: ${SPACINGS.xxs};
-  background: ${COLORS.white};
-  box-shadow: 1px 2px;
-  border-radius: 5px;
-  border: 1px solid ${COLORS.dark};
-`;
-
 function Navbar() {
   const history = useHistory();
   const location = useLocation();
@@ -79,9 +72,9 @@ function Navbar() {
     <header>
       <div className={clsx(topHeader, isHomePage && logoCenter)}>
         {!isHomePage && (
-          <button className={backButton} onClick={handleRoute}>
+          <Button onClick={handleRoute}>
             <img src={LeftArrowSVG} alt="Left arrow" width="16px" />
-          </button>
+          </Button>
         )}
 
         <img

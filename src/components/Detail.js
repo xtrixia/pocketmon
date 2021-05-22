@@ -25,6 +25,7 @@ import {
   marginBottomMd,
   marginBottomXxl,
   marginRightMd,
+  marginTopXxl,
 } from "../root/styles";
 import { generateGotchaPossibility, useLocalStorage } from "../helpers";
 
@@ -94,7 +95,7 @@ function Detail({ match, location }) {
   const [getAbilityInfo, { loading: getAbilityInfoLoading }] = useLazyQuery(
     GET_ABILITY_INFO,
     {
-      fetchPolicy: "cache-first",
+      fetchPolicy: "cache-and-network",
       onCompleted: (res) => {
         const result = res?.ability?.response?.effect_entries;
         const findResultEN = result.find(
@@ -113,9 +114,11 @@ function Detail({ match, location }) {
   const onToggleAbilityInfo = (abilityName) => {
     setToggleAbilityInfo({ ...toggleAbilityInfo, name: abilityName });
 
+    console.log("masuk sini");
     getAbilityInfo({
       variables: { ability: abilityName },
     });
+    console.log("after get");
   };
 
   const closeToggleAbilityInfo = () => {
@@ -144,7 +147,7 @@ function Detail({ match, location }) {
     const currentPocket = [...persistedPokemons];
     currentPocket.push({
       name: currentPokemonName,
-      nickname: nickname,
+      nickname: nickname || currentPokemonName,
       imgUrl: currentPokemonImg,
     });
     setPersistedPokemons(currentPocket);
@@ -152,7 +155,9 @@ function Detail({ match, location }) {
   };
 
   if (error) {
-    <p>Error!</p>;
+    <Typography variant="h2" className={marginTopXxl}>
+      There's something's wrong...
+    </Typography>;
   }
 
   if (data) {
@@ -171,7 +176,12 @@ function Detail({ match, location }) {
                 `}
                 onClick={() => setGotchaPossibility(-1)}
               >
-                <PokeImg img={CloseCircleSVG} alt="Close modal" role="button" />
+                <PokeImg
+                  img={CloseCircleSVG}
+                  type="xsmall"
+                  alt="Close modal"
+                  role="button"
+                />
               </button>
             </div>
             <Typography
@@ -219,7 +229,12 @@ function Detail({ match, location }) {
                 `}
                 onClick={() => setGotchaPossibility(-1)}
               >
-                <PokeImg img={CloseCircleSVG} alt="Close modal" role="button" />
+                <PokeImg
+                  img={CloseCircleSVG}
+                  alt="Close modal"
+                  role="button"
+                  type="xsmall"
+                />
               </button>
             </div>
             <Typography variant="h2" className={marginBottomMd}>
@@ -439,7 +454,11 @@ function Detail({ match, location }) {
     );
   }
 
-  return <p>Loading...</p>;
+  return (
+    <Typography variant="h2" className={marginTopXxl}>
+      Loading...
+    </Typography>
+  );
 }
 
 export default withRouter(Detail);

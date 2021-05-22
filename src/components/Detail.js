@@ -2,17 +2,19 @@
  * @todo
  * [ ] catch pokemon possibility rate up to 50%
  */
-import { useQuery } from "@apollo/client";
+import { useState } from "react";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { css } from "@emotion/css";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 
 import Typography from "../ui_palette/Typography";
 import PokeLabel from "../ui_palette/PokeLabel";
 import PokeImg from "../ui_palette/PokeImg";
 import OpenPokeballSVG from "../assets/open-pokeball.svg";
+import CloseCircleSVG from "../assets/close-circle.svg";
 
-import { GET_POKEMON_BY_NAME } from "../graphql/queries";
+import { GET_POKEMON_BY_NAME, GET_ABILITY_INFO } from "../graphql/queries";
 import { BREAKPOINTS } from "../root/breakpoints";
 import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";
@@ -34,6 +36,7 @@ const sectionMoves = css`
   display: grid;
   grid-gap: ${SPACINGS.sm};
   grid-template-columns: repeat(2, 100px);
+  justify-content: space-between;
   margin-bottom: ${SPACINGS.md};
   & li {
     cursor: pointer;
@@ -43,6 +46,7 @@ const sectionMoves = css`
   }
   @media (min-width: ${BREAKPOINTS.lg}) {
     grid-template-columns: repeat(10, 100px);
+    justify-content: space-around;
   }
 `;
 
@@ -112,6 +116,20 @@ const sectionTop = css`
   }
 `;
 
+const sectionAbilityInfo = css`
+  display: flex;
+  & img {
+    cursor: pointer;
+    margin-left: auto;
+    margin-bottom: auto;
+  }
+`;
+
+const emptyAbilityInfo = {
+  name: "",
+  entry: "",
+};
+
 function Detail({ match, location }) {
   const currentPokemonName = match.params.id;
 
@@ -119,11 +137,39 @@ function Detail({ match, location }) {
   const currentPokemonImg = searchParams.get("img");
 
   const { loading, error, data } = useQuery(GET_POKEMON_BY_NAME, {
-    variables: {
-      name: currentPokemonName,
-    },
+    variables: { name: currentPokemonName },
     fetchPolicy: "cache-first",
   });
+
+  const [getAbilityInfo, { loading: getAbilityInfoLoading }] = useLazyQuery(
+    GET_ABILITY_INFO,
+    {
+      onCompleted: (res) => {
+        const result = res?.ability?.response?.effect_entries;
+        const findResultEN = result.find(
+          (entry) => entry.language.name === "en"
+        );
+        setToggleAbilityInfo({
+          ...toggleAbilityInfo,
+          entry: findResultEN.effect,
+        });
+      },
+    }
+  );
+
+  const [toggleAbilityInfo, setToggleAbilityInfo] = useState(emptyAbilityInfo);
+
+  const onToggleAbilityInfo = (abilityName) => {
+    setToggleAbilityInfo({ ...toggleAbilityInfo, name: abilityName });
+
+    getAbilityInfo({
+      variables: { ability: abilityName },
+    });
+  };
+
+  const closeToggleAbilityInfo = () => {
+    setToggleAbilityInfo(emptyAbilityInfo);
+  };
 
   return (
     <div>
@@ -219,31 +265,81 @@ function Detail({ match, location }) {
             </Typography>
           </section>
 
-          <ul>
-            <section id="ability-section" className={stadium}>
-              <Typography variant="h3" className={marginBottomMd}>
-                Ability(s)
-              </Typography>
-              {data?.pokemon?.abilities?.map((ability, index) => (
-                <li key={index}>
-                  <Typography variant="h5">{ability?.ability?.name}</Typography>
-                </li>
-              ))}
-            </section>
-
-            <section id="move-section" className={stadium}>
-              <Typography variant="h3" className={marginBottomMd}>
-                Move(s)
-              </Typography>
-              <div className={sectionMoves}>
-                {data?.pokemon?.moves?.map((move, index) => (
-                  <Link to={move?.move?.url} key={index}>
-                    {move?.move?.name}
-                  </Link>
+          <section
+            id="ability-section"
+            className={clsx(
+              stadium,
+              toggleAbilityInfo.name &&
+                css`
+                  transition: ease 0.5s;
+                  background: ${COLORS.secondary};
+                `
+            )}
+          >
+            {!toggleAbilityInfo.name ? (
+              <>
+                <Typography variant="h3" className={marginBottomMd}>
+                  Ability(s)
+                </Typography>
+                {data?.pokemon?.abilities?.map((ability, index) => (
+                  <button
+                    id={`detail-${ability?.ability?.name}-anchor`}
+                    onClick={() => onToggleAbilityInfo(ability?.ability?.name)}
+                    key={index}
+                    hrefLang="en"
+                    className={css`
+                      font-family: Karla, sans-serif;
+                      border: none;
+                      display: block;
+                      background: none;
+                      text-decoration: underline;
+                    `}
+                  >
+                    <Typography variant="h5">
+                      {ability?.ability?.name}
+                    </Typography>
+                  </button>
                 ))}
-              </div>
-            </section>
-          </ul>
+              </>
+            ) : (
+              <>
+                <div className={sectionAbilityInfo}>
+                  <Typography variant="h3" className={marginBottomMd}>
+                    Ability Info
+                  </Typography>
+                  <PokeImg
+                    img={CloseCircleSVG}
+                    alt="Close icon"
+                    role="button"
+                    onClick={closeToggleAbilityInfo}
+                  />
+                </div>
+
+                <Typography variant="h5" className={fontBold}>
+                  {toggleAbilityInfo.name}
+                </Typography>
+
+                <Typography variant="body">
+                  {getAbilityInfoLoading
+                    ? "Loading..."
+                    : toggleAbilityInfo.entry}
+                </Typography>
+              </>
+            )}
+          </section>
+
+          <section id="move-section" className={stadium}>
+            <Typography variant="h3" className={marginBottomMd}>
+              Move(s)
+            </Typography>
+            <div className={sectionMoves}>
+              {data?.pokemon?.moves?.map((move, index) => (
+                <Typography variant="body" key={index}>
+                  {move?.move?.name}
+                </Typography>
+              ))}
+            </div>
+          </section>
         </>
       )}
     </div>

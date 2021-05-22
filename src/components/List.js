@@ -34,7 +34,7 @@ function List() {
         What Pokémon are you looking for?
       </Typography>
 
-      <SearchBar value={search} onSearch={(value) => setSearch(value)} />
+      {/* <SearchBar value={search} onSearch={(value) => setSearch(value)} /> */}
 
       {loading && <p>Loading...</p>}
 

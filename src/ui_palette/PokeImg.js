@@ -4,7 +4,10 @@ import clsx from "clsx";
 import { BREAKPOINTS } from "../root/breakpoints";
 
 const xsmall = css`
-  width: 50px;
+  width: 25px;
+  @media (min-width: ${BREAKPOINTS.sm}) {
+    width: 50px;
+  }
 `;
 
 const small = css`
@@ -29,7 +32,7 @@ const large = css`
 `;
 
 function PokeImg({ alt, background, className, img, type, ...props }) {
-  let imgType = large;
+  let imgType = "";
 
   switch (type) {
     case "small":
@@ -37,6 +40,9 @@ function PokeImg({ alt, background, className, img, type, ...props }) {
       break;
     case "medium":
       imgType = medium;
+      break;
+    case "large":
+      imgType = large;
       break;
     default:
       imgType = xsmall;

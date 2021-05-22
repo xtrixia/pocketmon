@@ -61,15 +61,16 @@ function Navbar() {
   const isHomePage = location.pathname === "/";
 
   const handleRoute = () => {
-    switch (location.pathname) {
+    const currentPath = location.pathname;
+    switch (currentPath) {
       case "/pocket":
         history.goBack();
         break;
-      case "/profile/:id":
-        history.push("/list");
+      case "/list":
+        history.push("/");
         break;
       default:
-        history.push("/");
+        history.push("/list");
         break;
     }
   };

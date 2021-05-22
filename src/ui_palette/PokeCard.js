@@ -9,12 +9,49 @@ import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
 import { BREAKPOINTS } from "../root/breakpoints";
 
-function PokeCard({ className, imgUrl, title, totalOwned }) {
+const landscape = css``;
+
+const potrait = css`
+  flex-direction: column;
+  width: 125px;
+  @media (min-width: ${BREAKPOINTS.sm}) {
+  }
+`;
+
+const landscapeImg = css`
+  width: 100px;
+  @media (min-width: ${BREAKPOINTS.sm}) {
+    width: 250px;
+  }
+`;
+
+const potraitImg = css`
+  width: 100%;
+`;
+
+function PokeCard({
+  actions,
+  className,
+  description,
+  imgUrl,
+  title,
+  totalOwned,
+  type,
+  url,
+}) {
+  let typeStyle = landscape;
+  let imgWidth = landscapeImg;
+  if (type === "potrait") {
+    typeStyle = potrait;
+    imgWidth = potraitImg;
+  }
+
   return (
     <Link
-      to={`/profile/${title}?img=${imgUrl}`}
+      to={url}
       className={clsx(
         className,
+        typeStyle,
         css`
           filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
           display: flex;
@@ -27,6 +64,7 @@ function PokeCard({ className, imgUrl, title, totalOwned }) {
         img={imgUrl}
         alt={title}
         type="small"
+        className={imgWidth}
         background={COLORS.white2}
       />
       <div
@@ -43,14 +81,19 @@ function PokeCard({ className, imgUrl, title, totalOwned }) {
         `}
       >
         <Typography variant="subheading2">{title}</Typography>
-        <Typography
-          variant="body"
-          className={css`
-            color: ${COLORS.dark};
-          `}
-        >
-          You've owned: {totalOwned}
-        </Typography>
+        {description ? (
+          description
+        ) : (
+          <Typography
+            variant="body"
+            className={css`
+              color: ${COLORS.dark};
+            `}
+          >
+            You've owned: {totalOwned}
+          </Typography>
+        )}
+        {actions}
       </div>
     </Link>
   );

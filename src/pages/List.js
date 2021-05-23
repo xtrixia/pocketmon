@@ -1,27 +1,51 @@
-import { useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useLazyQuery } from "@apollo/client";
 import { withRouter } from "react-router-dom";
 import { css } from "@emotion/css";
+import clsx from "clsx";
 
+import Button from "../components/Button";
 import PokeImg from "../components/PokeImg";
 import PokeCard from "../components/PokeCard";
 import Typography from "../components/Typography";
 import SloganSVG from "../assets/slogan.svg";
+import LeftArrowSVG from "../assets/left-arrow.svg";
 
 import { GET_POKEMONS } from "../graphql/queries";
 import { SPACINGS } from "../root/spacings";
+import { COLORS } from "../root/colors";
 import { BREAKPOINTS } from "../root/breakpoints";
-import { marginTopXxl } from "../root/styles";
+import {
+  marginBottomMd,
+  marginBottomXxl,
+  marginTopMd,
+  marginTopXxl,
+  textAlignCenter,
+} from "../root/styles";
 
 import { useLocalStorage } from "../helpers";
 
-const heading = css`
-  padding: ${SPACINGS.md} 0;
-`;
-
 function List() {
-  const { loading, error, data } = useQuery(GET_POKEMONS, {
+  const [offset, setOffset] = useState(0);
+
+  const [pokedex, setPokedex] = useState([]);
+
+  const [fetchPokedex, { loading, error, data }] = useLazyQuery(GET_POKEMONS, {
     fetchPolicy: "cache-first",
   });
+
+  useEffect(() => {
+    fetchPokedex({ offset: 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (data?.pokemons?.results) {
+      setOffset(data?.pokemons?.nextOffset);
+      setPokedex(pokedex.concat(data?.pokemons?.results));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   const [persistedPokemons] = useLocalStorage("pokemons", []);
 
@@ -34,6 +58,12 @@ function List() {
     }
   });
 
+  const loadMorePokedex = () => {
+    fetchPokedex({
+      variables: { offset },
+    });
+  };
+
   if (error) {
     return (
       <Typography variant="h2" className={marginTopXxl}>
@@ -45,7 +75,10 @@ function List() {
   return (
     <>
       {persistedPokemons?.length ? (
-        <Typography variant="h4" className={heading}>
+        <Typography
+          variant="h4"
+          className={clsx(marginTopXxl, marginBottomXxl)}
+        >
           {persistedPokemons?.length} Pokémon(s) you have owned.
         </Typography>
       ) : (
@@ -57,9 +90,7 @@ function List() {
         />
       )}
 
-      <Typography variant="h3" className={heading}>
-        What Pokémon are you looking for?
-      </Typography>
+      <Typography variant="h3">What Pokémon are you looking for?</Typography>
 
       {loading && (
         <Typography variant="h2" className={marginTopXxl}>
@@ -68,7 +99,7 @@ function List() {
       )}
 
       <ul>
-        {data?.pokemons?.results?.map((pokemon, index) => (
+        {pokedex.map((pokemon, index) => (
           <PokeCard
             isClickable
             key={index}
@@ -84,6 +115,49 @@ function List() {
           />
         ))}
       </ul>
+
+      {pokedex.length && !!offset ? (
+        <>
+          <Button
+            id="load-intersection"
+            className={clsx(
+              marginBottomMd,
+              marginTopMd,
+              textAlignCenter,
+              css`
+                width: 100%;
+              `
+            )}
+            onClick={loadMorePokedex}
+          >
+            Load more
+          </Button>
+          <Button
+            className={css`
+              position: fixed;
+              bottom: 5%;
+              background: ${COLORS.primary};
+              right: 10%;
+              border-radius: 50%;
+              :hover {
+                background: ${COLORS.terniary};
+              }
+            `}
+            onClick={() =>
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+            }
+          >
+            <img
+              src={LeftArrowSVG}
+              alt="Top arrow"
+              width="16px"
+              className={css`
+                transform: rotate(90deg);
+              `}
+            />
+          </Button>
+        </>
+      ) : null}
     </>
   );
 }

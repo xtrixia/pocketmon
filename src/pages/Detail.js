@@ -143,6 +143,11 @@ function Detail({ match, location }) {
     setNickname(e.target.value);
   };
 
+  const handleCloseModal = () => {
+    setNickname("");
+    setGotchaPossibility(-1);
+  };
+
   const handleAddToMyPocket = () => {
     const currentPocket = [...persistedPokemons];
     currentPocket.push({
@@ -151,7 +156,7 @@ function Detail({ match, location }) {
       imgUrl: currentPokemonImg,
     });
     setPersistedPokemons(currentPocket);
-    setGotchaPossibility(-1);
+    handleCloseModal();
   };
 
   if (error) {
@@ -174,7 +179,7 @@ function Detail({ match, location }) {
                   position: absolute;
                   right: 6%;
                 `}
-                onClick={() => setGotchaPossibility(-1)}
+                onClick={handleCloseModal}
               >
                 <PokeImg
                   img={CloseCircleSVG}
@@ -208,10 +213,8 @@ function Detail({ match, location }) {
                 }
               `}
             >
-              <Button onClick={() => handleAddToMyPocket()}>
-                Add to my pocket
-              </Button>
-              <Button type="outline" onClick={() => setGotchaPossibility(-1)}>
+              <Button onClick={handleAddToMyPocket}>Add to my pocket</Button>
+              <Button type="outline" onClick={handleCloseModal}>
                 Skip
               </Button>
             </div>

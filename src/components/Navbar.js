@@ -87,6 +87,7 @@ function Navbar() {
         )}
 
         <img
+          loading="lazy"
           src="https://ik.imagekit.io/xtrixia/logo_P55Zd2ZuZ.svg"
           alt="Pockétmon logo"
           width="200px"

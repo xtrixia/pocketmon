@@ -13,6 +13,7 @@ function Typography({ className, variant, ...props }) {
         className,
         css`
           ${generateStyle(variant)}
+          overflow-wrap: anywhere;
         `
       )}
       {...props}
@@ -87,7 +88,7 @@ function generateStyle(variant) {
         fontFamily: `"Lora", serif`,
         color: COLORS.dark,
         fontWeight: 400,
-        fontSize: "2.125rem",
+        fontSize: "2rem",
         lineHeight: 1.235,
         letterSpacing: "0.00735",
       };

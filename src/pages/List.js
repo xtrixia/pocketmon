@@ -16,6 +16,7 @@ import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";
 import { BREAKPOINTS } from "../root/breakpoints";
 import {
+  fontBold,
   marginBottomMd,
   marginBottomXxl,
   marginTopMd,
@@ -124,18 +125,22 @@ function List() {
               marginBottomMd,
               marginTopMd,
               textAlignCenter,
+              fontBold,
               css`
                 width: 100%;
+                font-family: Karla, sans-serif;
               `
             )}
             onClick={loadMorePokedex}
           >
             Load more
           </Button>
+
           <Button
             className={css`
               position: fixed;
               bottom: 5%;
+              padding: ${SPACINGS.lg};
               background: ${COLORS.primary};
               right: 10%;
               border-radius: 50%;

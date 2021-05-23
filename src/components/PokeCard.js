@@ -111,6 +111,7 @@ function PokeCard({
         typeStyle,
         customStyle,
         css`
+          min-width: 240px;
           :hover {
             background: ${COLORS.white2};
             transition: ease 0.5s;

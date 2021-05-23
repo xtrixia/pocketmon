@@ -26,6 +26,14 @@ export const marginTopXxl = css`
   margin-top: ${SPACINGS.xxl};
 `;
 
+export const marginBottomXxs = css`
+  margin-bottom: ${SPACINGS.xxs};
+`;
+
+export const marginBottomSm = css`
+  margin-bottom: ${SPACINGS.sm};
+`;
+
 export const marginBottomMd = css`
   margin-bottom: ${SPACINGS.md};
 `;

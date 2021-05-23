@@ -16,7 +16,7 @@ const topHeader = css`
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   display: flex;
   align-items: center;
-  padding: ${SPACINGS.sm};
+  padding: ${SPACINGS.sm} ${SPACINGS.lg};
   @media (min-width: ${BREAKPOINTS.sm}) {
     justify-content: space-between;
   }
@@ -52,6 +52,7 @@ function Navbar() {
   const location = useLocation();
 
   const isHomePage = location.pathname === "/";
+  const isMyPokemonListPage = location.pathname === "/pocket";
 
   const handleRoute = () => {
     const currentPath = location.pathname;
@@ -69,7 +70,13 @@ function Navbar() {
   };
 
   return (
-    <header>
+    <header
+      className={css`
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      `}
+    >
       <div className={clsx(topHeader, isHomePage && logoCenter)}>
         {!isHomePage && (
           <Button onClick={handleRoute}>
@@ -82,12 +89,17 @@ function Navbar() {
           alt="Pockétmon logo"
           width="200px"
           role="button"
-          className={logo}
+          className={clsx(
+            logo,
+            css`
+              margin: ${isMyPokemonListPage && "0 auto"};
+            `
+          )}
           onClick={() => history.push("/")}
           tabIndex={0}
         />
 
-        {!isHomePage && (
+        {!isHomePage && !isMyPokemonListPage && (
           <img
             src={PokeBallsSVG}
             alt="My Pokémon list"

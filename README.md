@@ -1,4 +1,4 @@
-![Pockétmon](https://github.com/xtrixia/pocketmon/blob/master/src/assets/logo.svg?raw=true)
+![Pockétmon](https://ik.imagekit.io/xtrixia/logo_P55Zd2ZuZ.svg)
 
 Your pocket-size Pokémon website. Built with ❤️
 

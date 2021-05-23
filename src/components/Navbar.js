@@ -3,9 +3,6 @@ import { css } from "@emotion/css";
 import { useHistory, useLocation, withRouter } from "react-router-dom";
 
 import Button from "./Button";
-import LeftArrowSVG from "../assets/left-arrow.svg";
-import LogoSVG from "../assets/logo.svg";
-import PokeBallsSVG from "../assets/pokeballs.svg";
 
 import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
@@ -81,7 +78,7 @@ function Navbar() {
         {!isHomePage && (
           <Button onClick={handleRoute}>
             <img
-              src={LeftArrowSVG}
+              src="https://ik.imagekit.io/xtrixia/left-arrow_J_B2Zp65M.svg"
               alt="Left arrow"
               width="16px"
               height="16px"
@@ -90,7 +87,7 @@ function Navbar() {
         )}
 
         <img
-          src={LogoSVG}
+          src="https://ik.imagekit.io/xtrixia/logo_P55Zd2ZuZ.svg"
           alt="Pockétmon logo"
           width="200px"
           height="80px"
@@ -107,7 +104,7 @@ function Navbar() {
 
         {!isHomePage && !isMyPokemonListPage && (
           <img
-            src={PokeBallsSVG}
+            src="https://ik.imagekit.io/xtrixia/pokeballs_zLTlXO-5_wx.svg"
             alt="My Pokémon list"
             width="45px"
             role="button"

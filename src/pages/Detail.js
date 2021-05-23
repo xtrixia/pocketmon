@@ -11,9 +11,6 @@ import Typography from "../components/Typography";
 import TextBox from "../components/TextBox";
 import Modal from "../components/Modal";
 import Button from "../components/Button";
-import CloseCircleSVG from "../assets/close-circle.svg";
-import GotchaSVG from "../assets/gotcha.svg";
-import FootprintsSVG from "../assets/footprints.svg";
 
 import { GET_POKEMON_BY_NAME, GET_ABILITY_INFO } from "../graphql/queries";
 import { BREAKPOINTS } from "../root/breakpoints";
@@ -170,7 +167,10 @@ function Detail({ match, location }) {
         {gotchaPossibility === 0 && (
           <Modal>
             <div>
-              <PokeImg src={GotchaSVG} type="small" />
+              <PokeImg
+                src="https://ik.imagekit.io/xtrixia/gotcha_-Qs1Xicm6.svg"
+                type="small"
+              />
               <button
                 className={css`
                   position: absolute;
@@ -179,7 +179,7 @@ function Detail({ match, location }) {
                 onClick={handleCloseModal}
               >
                 <PokeImg
-                  img={CloseCircleSVG}
+                  img="https://ik.imagekit.io/xtrixia/close-circle_8HdsOq3Bi.svg"
                   type="xsmall"
                   alt="Close modal"
                   role="button"
@@ -228,7 +228,10 @@ function Detail({ match, location }) {
         {gotchaPossibility === 1 && (
           <Modal>
             <div>
-              <PokeImg src={FootprintsSVG} type="small" />
+              <PokeImg
+                src="https://ik.imagekit.io/xtrixia/footprints_jLOnbZUJAFM.svg"
+                type="small"
+              />
               <button
                 className={css`
                   position: absolute;
@@ -237,7 +240,7 @@ function Detail({ match, location }) {
                 onClick={() => setGotchaPossibility(-1)}
               >
                 <PokeImg
-                  img={CloseCircleSVG}
+                  img="https://ik.imagekit.io/xtrixia/close-circle_8HdsOq3Bi.svg"
                   alt="Close modal"
                   role="button"
                   type="xsmall"
@@ -423,7 +426,7 @@ function Detail({ match, location }) {
                       Ability Info
                     </Typography>
                     <PokeImg
-                      img={CloseCircleSVG}
+                      img="https://ik.imagekit.io/xtrixia/close-circle_8HdsOq3Bi.svg"
                       alt="Close icon"
                       role="button"
                       onClick={closeToggleAbilityInfo}

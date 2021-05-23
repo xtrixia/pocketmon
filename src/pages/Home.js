@@ -2,8 +2,6 @@ import { css } from "@emotion/css";
 import { Link } from "react-router-dom";
 
 import Typography from "../components/Typography";
-import MapSVG from "../assets/map.svg";
-import PokeBallsSVG from "../assets/pokeballs.svg";
 
 import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";
@@ -29,7 +27,7 @@ function Home() {
     <>
       <Link to="/pocket" className={buttonStyle}>
         <img
-          src={PokeBallsSVG}
+          src="https://ik.imagekit.io/xtrixia/pokeballs_zLTlXO-5_wx.svg"
           width="150px"
           height="150px"
           alt="My Pokémon list"
@@ -38,7 +36,12 @@ function Home() {
       </Link>
 
       <Link to="/list" className={buttonStyle}>
-        <img src={MapSVG} width="150px" height="150px" alt="Catch Pokémon" />
+        <img
+          src="https://ik.imagekit.io/xtrixia/map_b3OL-udNn.svg"
+          width="150px"
+          height="150px"
+          alt="Catch Pokémon"
+        />
         <Typography variant="subtitle">Catch Pokémon</Typography>
       </Link>
 

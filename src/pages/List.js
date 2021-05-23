@@ -8,8 +8,6 @@ import Button from "../components/Button";
 import PokeImg from "../components/PokeImg";
 import PokeCard from "../components/PokeCard";
 import Typography from "../components/Typography";
-import SloganSVG from "../assets/slogan.svg";
-import LeftArrowSVG from "../assets/left-arrow.svg";
 
 import { GET_POKEMONS } from "../graphql/queries";
 import { SPACINGS } from "../root/spacings";
@@ -83,7 +81,7 @@ function List() {
         </Typography>
       ) : (
         <PokeImg
-          src={SloganSVG}
+          src="https://ik.imagekit.io/xtrixia/slogan_gJEa15Wil.svg"
           type="medium"
           alt="Slogan: gotta catch 'em all"
           className={marginTopXxl}
@@ -150,7 +148,7 @@ function List() {
             }
           >
             <img
-              src={LeftArrowSVG}
+              src="https://ik.imagekit.io/xtrixia/left-arrow_J_B2Zp65M.svg"
               alt="Top arrow"
               width="16px"
               className={css`

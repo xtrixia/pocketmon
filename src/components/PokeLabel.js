@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 import clsx from "clsx";
 
 import Typography from "./Typography";

@@ -1,7 +1,7 @@
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 import { Link } from "react-router-dom";
 
-import Typography from "../ui_palette/Typography";
+import Typography from "../components/Typography";
 import MapSVG from "../assets/map.svg";
 import PokeBallsSVG from "../assets/pokeballs.svg";
 

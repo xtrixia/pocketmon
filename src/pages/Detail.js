@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 

@@ -4,11 +4,11 @@ import { ApolloProvider } from "@apollo/client/react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from "./components/Home";
-import List from "./components/List";
-import Detail from "./components/Detail";
-import MyList from "./components/MyList";
-import Container from "./ui_palette/Container";
+import Home from "./pages/Home";
+import List from "./pages/List";
+import Detail from "./pages/Detail";
+import MyList from "./pages/MyList";
+import Container from "./components/Container";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.scss";

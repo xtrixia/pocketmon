@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 import clsx from "clsx";
 
-import Typography from "../ui_palette/Typography";
-import TextBox from "../ui_palette/TextBox";
-import PokeCard from "../ui_palette/PokeCard";
-import Button from "../ui_palette/Button";
-import Modal from "../ui_palette/Modal";
+import Typography from "../components/Typography";
+import TextBox from "../components/TextBox";
+import PokeCard from "../components/PokeCard";
+import Button from "../components/Button";
+import Modal from "../components/Modal";
 
 import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";

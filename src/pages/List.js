@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { withRouter } from "react-router-dom";
-import { css } from "@emotion/react";
+import { css } from "@emotion/css";
 
-import PokeImg from "../ui_palette/PokeImg";
-import PokeCard from "../ui_palette/PokeCard";
-import Typography from "../ui_palette/Typography";
+import PokeImg from "../components/PokeImg";
+import PokeCard from "../components/PokeCard";
+import Typography from "../components/Typography";
 import SloganSVG from "../assets/slogan.svg";
 
 import { GET_POKEMONS } from "../graphql/queries";

@@ -166,7 +166,11 @@ function Detail({ match, location }) {
       <div>
         {gotchaPossibility === 0 && (
           <Modal>
-            <div>
+            <div
+              className={css`
+                position: relative;
+              `}
+            >
               <PokeImg
                 src="https://ik.imagekit.io/xtrixia/gotcha_-Qs1Xicm6.svg"
                 type="small"
@@ -174,7 +178,7 @@ function Detail({ match, location }) {
               <button
                 className={css`
                   position: absolute;
-                  right: 6%;
+                  right: 0;
                 `}
                 onClick={handleCloseModal}
               >
@@ -227,7 +231,11 @@ function Detail({ match, location }) {
 
         {gotchaPossibility === 1 && (
           <Modal>
-            <div>
+            <div
+              className={css`
+                position: relative;
+              `}
+            >
               <PokeImg
                 src="https://ik.imagekit.io/xtrixia/footprints_jLOnbZUJAFM.svg"
                 type="small"
@@ -235,7 +243,7 @@ function Detail({ match, location }) {
               <button
                 className={css`
                   position: absolute;
-                  right: 6%;
+                  right: 0;
                 `}
                 onClick={() => setGotchaPossibility(-1)}
               >

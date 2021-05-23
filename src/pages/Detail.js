@@ -113,12 +113,9 @@ function Detail({ match, location }) {
 
   const onToggleAbilityInfo = (abilityName) => {
     setToggleAbilityInfo({ ...toggleAbilityInfo, name: abilityName });
-
-    console.log("masuk sini");
     getAbilityInfo({
       variables: { ability: abilityName },
     });
-    console.log("after get");
   };
 
   const closeToggleAbilityInfo = () => {
@@ -128,6 +125,8 @@ function Detail({ match, location }) {
   const [gotchaPossibility, setGotchaPossibility] = useState(-1);
 
   const [nickname, setNickname] = useState("");
+
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
 
   const [persistedPokemons, setPersistedPokemons] = useLocalStorage(
     "pokemons",
@@ -140,6 +139,7 @@ function Detail({ match, location }) {
   };
 
   const handleInputNickname = (e) => {
+    setIsNicknameDuplicate(false);
     setNickname(e.target.value);
   };
 
@@ -157,6 +157,21 @@ function Detail({ match, location }) {
     });
     setPersistedPokemons(currentPocket);
     handleCloseModal();
+  };
+
+  const handleValidateNickname = () => {
+    let checkInputNickname = -1;
+    if (!nickname) {
+      checkInputNickname = persistedPokemons.findIndex(
+        (pocket) => pocket.nickname === currentPokemonName
+      );
+    } else {
+      checkInputNickname = persistedPokemons.findIndex(
+        (pocket) => pocket.nickname === nickname
+      );
+    }
+    if (checkInputNickname !== -1) setIsNicknameDuplicate(true);
+    else handleAddToMyPocket();
   };
 
   if (error) {
@@ -199,6 +214,13 @@ function Detail({ match, location }) {
               placeholder="Your Pokémon's Nickname"
               value={nickname}
               onSearch={handleInputNickname}
+              isError={isNicknameDuplicate}
+              helperText={
+                isNicknameDuplicate &&
+                `You already named ${
+                  nickname || currentPokemonName
+                } for your other Pokémon`
+              }
             />
             <div
               className={css`
@@ -213,7 +235,7 @@ function Detail({ match, location }) {
                 }
               `}
             >
-              <Button onClick={handleAddToMyPocket}>Add to my pocket</Button>
+              <Button onClick={handleValidateNickname}>Add to my pocket</Button>
               <Button type="outline" onClick={handleCloseModal}>
                 Skip
               </Button>

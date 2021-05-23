@@ -80,7 +80,12 @@ function Navbar() {
       <div className={clsx(topHeader, isHomePage && logoCenter)}>
         {!isHomePage && (
           <Button onClick={handleRoute}>
-            <img src={LeftArrowSVG} alt="Left arrow" width="16px" />
+            <img
+              src={LeftArrowSVG}
+              alt="Left arrow"
+              width="16px"
+              height="16px"
+            />
           </Button>
         )}
 
@@ -88,6 +93,7 @@ function Navbar() {
           src={LogoSVG}
           alt="Pockétmon logo"
           width="200px"
+          height="80px"
           role="button"
           className={clsx(
             logo,

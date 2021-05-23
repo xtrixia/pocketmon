@@ -28,12 +28,17 @@ function Home() {
   return (
     <>
       <Link to="/pocket" className={buttonStyle}>
-        <img src={PokeBallsSVG} width="150px" alt="My Pokémon list" />
+        <img
+          src={PokeBallsSVG}
+          width="150px"
+          height="150px"
+          alt="My Pokémon list"
+        />
         <Typography variant="subtitle">My Pokémon List</Typography>
       </Link>
 
       <Link to="/list" className={buttonStyle}>
-        <img src={MapSVG} width="150px" alt="Catch Pokémon" />
+        <img src={MapSVG} width="150px" height="150px" alt="Catch Pokémon" />
         <Typography variant="subtitle">Catch Pokémon</Typography>
       </Link>
 

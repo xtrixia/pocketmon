@@ -44,14 +44,8 @@ function List() {
 
   return (
     <>
-      {loading && (
-        <Typography variant="h2" className={marginTopXxl}>
-          Loading...
-        </Typography>
-      )}
-
       {persistedPokemons?.length ? (
-        <Typography variant="h2" className={heading}>
+        <Typography variant="h4" className={heading}>
           {persistedPokemons?.length} Pokémon(s) you have owned.
         </Typography>
       ) : (
@@ -66,6 +60,12 @@ function List() {
       <Typography variant="h3" className={heading}>
         What Pokémon are you looking for?
       </Typography>
+
+      {loading && (
+        <Typography variant="h2" className={marginTopXxl}>
+          Loading...
+        </Typography>
+      )}
 
       <ul>
         {data?.pokemons?.results?.map((pokemon, index) => (

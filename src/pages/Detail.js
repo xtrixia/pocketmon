@@ -34,24 +34,6 @@ const sectionTypes = css`
   flex-direction: row;
 `;
 
-const sectionMoves = css`
-  display: grid;
-  grid-gap: ${SPACINGS.sm};
-  grid-template-columns: repeat(2, 100px);
-  justify-content: space-between;
-  margin-bottom: ${SPACINGS.md};
-  & li {
-    cursor: pointer;
-  }
-  @media (min-width: ${BREAKPOINTS.sm}) {
-    grid-template-columns: repeat(5, 100px);
-  }
-  @media (min-width: ${BREAKPOINTS.lg}) {
-    grid-template-columns: repeat(10, 100px);
-    justify-content: space-around;
-  }
-`;
-
 const stadium = css`
   border-radius: 2rem;
   background: ${COLORS.terniary};
@@ -465,13 +447,9 @@ function Detail({ match, location }) {
               <Typography variant="h3" className={marginBottomMd}>
                 Move(s)
               </Typography>
-              <div className={sectionMoves}>
-                {moves?.map((move, index) => (
-                  <Typography variant="body" key={index}>
-                    {move?.move?.name}
-                  </Typography>
-                ))}
-              </div>
+              <Typography variant="h5">
+                {moves?.map((move) => move?.move?.name).join(", ")}
+              </Typography>
             </section>
           </>
         )}

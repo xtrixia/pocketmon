@@ -14,7 +14,6 @@ import LeftArrowSVG from "../assets/left-arrow.svg";
 import { GET_POKEMONS } from "../graphql/queries";
 import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";
-import { BREAKPOINTS } from "../root/breakpoints";
 import {
   fontBold,
   marginBottomMd,
@@ -110,8 +109,6 @@ function List() {
             totalOwned={getPersistedPokemonsByName[pokemon.name] || 0}
             className={css`
               margin: ${SPACINGS.lg} 0;
-              @media (min-width: ${BREAKPOINTS.sm}) {
-              }
             `}
           />
         ))}

@@ -1,4 +1,4 @@
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
 
 import Typography from "../ui_palette/Typography";

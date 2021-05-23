@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 import { useHistory, useLocation, withRouter } from "react-router-dom";
 
 import Button from "./Button";

@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { withRouter } from "react-router-dom";
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 
 import PokeImg from "../ui_palette/PokeImg";
 import PokeCard from "../ui_palette/PokeCard";

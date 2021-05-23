@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 
-import PokeLabel from "../ui_palette/PokeLabel";
-import PokeImg from "../ui_palette/PokeImg";
-import ProgressBar from "../ui_palette/ProgressBar";
-import Typography from "../ui_palette/Typography";
-import TextBox from "../ui_palette/TextBox";
-import Modal from "../ui_palette/Modal";
-import Button from "../ui_palette/Button";
+import PokeLabel from "../components/PokeLabel";
+import PokeImg from "../components/PokeImg";
+import ProgressBar from "../components/ProgressBar";
+import Typography from "../components/Typography";
+import TextBox from "../components/TextBox";
+import Modal from "../components/Modal";
+import Button from "../components/Button";
 import CloseCircleSVG from "../assets/close-circle.svg";
 import GotchaSVG from "../assets/gotcha.svg";
 import FootprintsSVG from "../assets/footprints.svg";

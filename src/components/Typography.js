@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 
 import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";

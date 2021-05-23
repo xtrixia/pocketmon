@@ -1,4 +1,4 @@
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
 

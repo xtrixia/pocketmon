@@ -1,4 +1,4 @@
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 import clsx from "clsx";
 
 import { BREAKPOINTS } from "../root/breakpoints";

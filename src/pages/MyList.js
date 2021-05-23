@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { css } from "@emotion/css";
+import { css } from "@emotion/react";
 import clsx from "clsx";
 
 import Typography from "../ui_palette/Typography";

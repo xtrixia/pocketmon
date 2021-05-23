@@ -8,6 +8,7 @@ import PokeImg from "./PokeImg";
 import { COLORS } from "../root/colors";
 import { SPACINGS } from "../root/spacings";
 import { BREAKPOINTS } from "../root/breakpoints";
+import { marginBottomXxs } from "../root/styles";
 
 const landscape = css``;
 
@@ -20,6 +21,7 @@ const potrait = css`
 
 const landscapeImg = css`
   width: 100px;
+  border-radius: 5px 0 0 5px;
   @media (min-width: ${BREAKPOINTS.sm}) {
     width: 250px;
   }
@@ -27,6 +29,7 @@ const landscapeImg = css`
 
 const potraitImg = css`
   width: 100%;
+  border-radius: 5px 5px 0 0;
 `;
 
 const customStyle = css`
@@ -34,6 +37,8 @@ const customStyle = css`
   display: flex;
   border-radius: 5px;
   text-decoration: none;
+  border: 1px solid ${COLORS.dark};
+  box-shadow: 2px 2px ${COLORS.dark};
 `;
 
 function PokeCard({
@@ -47,11 +52,13 @@ function PokeCard({
   type,
   url,
 }) {
-  let typeStyle = landscape;
   let imgWidth = landscapeImg;
+  let typeStyle = landscape;
+  let borderRadiusStyle = "0 5px 5px 0";
   if (type === "potrait") {
-    typeStyle = potrait;
     imgWidth = potraitImg;
+    typeStyle = potrait;
+    borderRadiusStyle = "0 0 5px 5px";
   }
 
   const generateContent = () => {
@@ -60,7 +67,6 @@ function PokeCard({
         <PokeImg
           img={imgUrl}
           alt={title}
-          type="small"
           className={imgWidth}
           background={COLORS.white2}
         />
@@ -72,6 +78,7 @@ function PokeCard({
             display: flex;
             justify-content: center;
             flex-direction: column;
+            border-radius: ${borderRadiusStyle};
             @media (min-width: ${BREAKPOINTS.sm}) {
               padding: ${SPACINGS.lg};
             }
@@ -97,7 +104,24 @@ function PokeCard({
   };
 
   return isClickable ? (
-    <Link to={url} className={clsx(className, typeStyle, customStyle)}>
+    <Link
+      to={url}
+      className={clsx(
+        className,
+        typeStyle,
+        customStyle,
+        css`
+          :hover {
+            background: ${COLORS.white2};
+            transition: ease 0.5s;
+          }
+          :active {
+            box-shadow: 1px 2px ${COLORS.dark};
+            transform: translateY(3px);
+          }
+        `
+      )}
+    >
       {generateContent()}
     </Link>
   ) : (
@@ -111,9 +135,12 @@ function generateDescriptionTag(isClickable, text, url) {
   return !isClickable ? (
     <Link
       to={url}
-      className={css`
-        color: ${COLORS.dark};
-      `}
+      className={clsx(
+        marginBottomXxs,
+        css`
+          color: ${COLORS.dark};
+        `
+      )}
     >
       {text}
     </Link>

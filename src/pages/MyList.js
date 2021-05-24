@@ -46,13 +46,10 @@ function MyList() {
   };
 
   const listPokemonShown = useMemo(() => {
-    if (nicknameInput.length >= 3) {
-      const x = persistedPokemons.filter((pokemon) =>
-        pokemon.nickname.includes(nicknameInput)
-      );
-      return x;
-    }
-    return persistedPokemons;
+    const filteredPokemon = persistedPokemons.filter((pokemon) =>
+      pokemon.nickname.includes(nicknameInput)
+    );
+    return filteredPokemon || persistedPokemons;
   }, [nicknameInput, persistedPokemons]);
 
   const handleSearchNickname = (e) => {
@@ -84,7 +81,11 @@ function MyList() {
   }
 
   return (
-    <>
+    <div
+      className={css`
+        padding: ${SPACINGS.sm} ${SPACINGS.lg};
+      `}
+    >
       {persistedPokemons?.length ? (
         <Typography
           variant="h4"
@@ -101,7 +102,6 @@ function MyList() {
         placeholder="Your Pokémon's Nickname"
         value={nicknameInput}
         onSearch={handleSearchNickname}
-        helperText="Insert 3 character to trigger search"
       />
 
       {!listPokemonShown.length && nicknameInput.length ? (
@@ -125,9 +125,6 @@ function MyList() {
               }
               @media (min-width: ${BREAKPOINTS.md}) {
                 grid-template-columns: repeat(4, 200px);
-              }
-              @media (min-width: ${BREAKPOINTS.lg}) {
-                grid-template-columns: repeat(5, 210px);
               }
             `
           )}
@@ -195,7 +192,7 @@ function MyList() {
           </div>
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

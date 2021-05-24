@@ -78,7 +78,7 @@ function Navbar() {
         {!isHomePage && (
           <Button onClick={handleRoute}>
             <img
-              src="https://ik.imagekit.io/xtrixia/left-arrow_J_B2Zp65M.svg"
+              src="https://ik.imagekit.io/xtrixia/Pocketmon/left-arrow_J_B2Zp65M.svg"
               alt="Left arrow"
               width="16px"
               height="16px"
@@ -88,7 +88,11 @@ function Navbar() {
 
         <img
           loading="lazy"
-          src="https://ik.imagekit.io/xtrixia/logo_P55Zd2ZuZ.svg"
+          src="https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png"
+          srcSet="https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png 200w,
+          https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png 400w"
+          sizes="(max-width: 400px) 200px,
+            400px"
           alt="Pockétmon logo"
           width="200px"
           height="80px"
@@ -105,7 +109,7 @@ function Navbar() {
 
         {!isHomePage && !isMyPokemonListPage && (
           <img
-            src="https://ik.imagekit.io/xtrixia/pokeballs_zLTlXO-5_wx.svg"
+            src="https://ik.imagekit.io/xtrixia/Pocketmon/pokeballs_zLTlXO-5_wx.svg"
             alt="My Pokémon list"
             width="45px"
             role="button"

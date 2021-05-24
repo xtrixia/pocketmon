@@ -81,7 +81,7 @@ function List() {
         </Typography>
       ) : (
         <PokeImg
-          src="https://ik.imagekit.io/xtrixia/slogan_gJEa15Wil.svg"
+          src="https://ik.imagekit.io/xtrixia/Pocketmon/slogan_gJEa15Wil.svg"
           type="medium"
           alt="Slogan: gotta catch 'em all"
           className={marginTopXxl}
@@ -148,7 +148,7 @@ function List() {
             }
           >
             <img
-              src="https://ik.imagekit.io/xtrixia/left-arrow_J_B2Zp65M.svg"
+              src="https://ik.imagekit.io/xtrixia/Pocketmon/left-arrow_J_B2Zp65M.svg"
               alt="Top arrow"
               width="16px"
               className={css`

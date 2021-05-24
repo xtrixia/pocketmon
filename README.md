@@ -1,4 +1,4 @@
-![Pockétmon](https://ik.imagekit.io/xtrixia/logo_P55Zd2ZuZ.svg)
+![Pockétmon](https://ik.imagekit.io/xtrixia/Pocketmonlogo_P55Zd2ZuZ.svg)
 
 Your pocket-size Pokémon website. Built with ❤️
 
@@ -14,7 +14,6 @@ Your pocket-size Pokémon website. Built with ❤️
 .
 ├ public/           # serve public files
 ├ src/              # contain all sources used
-│ ├ assets/         # sources (e.g svg, png)
 │ ├ components/     # reusable components
 │ ├ graphql/        # queries and mutations gql
 │ ├ helpers/        # helper functions

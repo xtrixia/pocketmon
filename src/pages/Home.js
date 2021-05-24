@@ -27,7 +27,7 @@ function Home() {
     <>
       <Link to="/pocket" className={buttonStyle}>
         <img
-          src="https://ik.imagekit.io/xtrixia/pokeballs_zLTlXO-5_wx.svg"
+          src="https://ik.imagekit.io/xtrixia/Pocketmon/pokeballs_zLTlXO-5_wx.svg"
           width="150px"
           height="150px"
           alt="My Pokémon list"
@@ -37,7 +37,7 @@ function Home() {
 
       <Link to="/list" className={buttonStyle}>
         <img
-          src="https://ik.imagekit.io/xtrixia/map_b3OL-udNn.svg"
+          src="https://ik.imagekit.io/xtrixia/Pocketmon/map_b3OL-udNn.svg"
           width="150px"
           height="150px"
           alt="Catch Pokémon"

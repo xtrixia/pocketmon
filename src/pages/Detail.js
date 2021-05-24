@@ -172,7 +172,7 @@ function Detail({ match, location }) {
               `}
             >
               <PokeImg
-                src="https://ik.imagekit.io/xtrixia/gotcha_-Qs1Xicm6.svg"
+                src="https://ik.imagekit.io/xtrixia/Pocketmon/gotcha_-Qs1Xicm6.svg"
                 type="small"
               />
               <button
@@ -183,7 +183,7 @@ function Detail({ match, location }) {
                 onClick={handleCloseModal}
               >
                 <PokeImg
-                  img="https://ik.imagekit.io/xtrixia/close-circle_8HdsOq3Bi.svg"
+                  img="https://ik.imagekit.io/xtrixia/Pocketmon/close-circle_8HdsOq3Bi.svg"
                   type="xsmall"
                   alt="Close modal"
                   role="button"
@@ -237,7 +237,7 @@ function Detail({ match, location }) {
               `}
             >
               <PokeImg
-                src="https://ik.imagekit.io/xtrixia/footprints_jLOnbZUJAFM.svg"
+                src="https://ik.imagekit.io/xtrixia/Pocketmon/footprints_jLOnbZUJAFM.svg"
                 type="small"
               />
               <button
@@ -248,7 +248,7 @@ function Detail({ match, location }) {
                 onClick={() => setGotchaPossibility(-1)}
               >
                 <PokeImg
-                  img="https://ik.imagekit.io/xtrixia/close-circle_8HdsOq3Bi.svg"
+                  img="https://ik.imagekit.io/xtrixia/Pocketmon/close-circle_8HdsOq3Bi.svg"
                   alt="Close modal"
                   role="button"
                   type="xsmall"
@@ -434,7 +434,7 @@ function Detail({ match, location }) {
                       Ability Info
                     </Typography>
                     <PokeImg
-                      img="https://ik.imagekit.io/xtrixia/close-circle_8HdsOq3Bi.svg"
+                      img="https://ik.imagekit.io/xtrixia/Pocketmon/close-circle_8HdsOq3Bi.svg"
                       alt="Close icon"
                       role="button"
                       onClick={closeToggleAbilityInfo}

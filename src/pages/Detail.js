@@ -101,7 +101,7 @@ function Detail({ match, location }) {
     setToggleAbilityInfo(emptyAbilityInfo);
   };
 
-  const [gotchaPossibility, setGotchaPossibility] = useState(-1);
+  const [gotchaPossibility, setGotchaPossibility] = useState();
 
   const [nickname, setNickname] = useState("");
 
@@ -113,8 +113,11 @@ function Detail({ match, location }) {
   );
 
   const catchPokemon = () => {
-    const possibility = generateGotchaPossibility();
-    setGotchaPossibility(possibility);
+    setGotchaPossibility(-1);
+    setTimeout(() => {
+      const possibility = generateGotchaPossibility();
+      setGotchaPossibility(possibility);
+    }, 2000);
   };
 
   const handleInputNickname = (e) => {
@@ -124,7 +127,7 @@ function Detail({ match, location }) {
 
   const handleCloseModal = () => {
     setNickname("");
-    setGotchaPossibility(-1);
+    setGotchaPossibility();
   };
 
   const handleAddToMyPocket = () => {
@@ -153,18 +156,10 @@ function Detail({ match, location }) {
     else handleAddToMyPocket();
   };
 
-  if (error) {
-    <Typography variant="h2" className={marginTopXxl}>
-      There's something's wrong...
-    </Typography>;
-  }
-
-  if (data) {
-    const { height, weight, types, stats, abilities, moves } = data?.pokemon;
-
-    return (
-      <div>
-        {gotchaPossibility === 0 && (
+  const generateModal = (state) => {
+    switch (state) {
+      case 0:
+        return (
           <Modal>
             <div
               className={css`
@@ -227,9 +222,9 @@ function Detail({ match, location }) {
               </Button>
             </div>
           </Modal>
-        )}
-
-        {gotchaPossibility === 1 && (
+        );
+      case 1:
+        return (
           <Modal>
             <div
               className={css`
@@ -269,7 +264,48 @@ function Detail({ match, location }) {
               Try to catch another
             </Button>
           </Modal>
-        )}
+        );
+      case -1:
+        return (
+          <Modal transparent>
+            <PokeImg
+              type="small"
+              className={css`
+                margin: 0 auto;
+                display: block;
+                animation-iteration-count: infinite;
+                animation-name: bounce;
+                animation-duration: 3s;
+                @keyframes bounce {
+                  0% {
+                    transform: translateY(0);
+                  }
+                  50% {
+                    transform: translateY(-25px);
+                  }
+                }
+              `}
+              img="https://ik.imagekit.io/xtrixia/Pocketmon/open-pokeball_59laxoYbE.svg"
+            />
+          </Modal>
+        );
+      default:
+        return null;
+    }
+  };
+
+  if (error) {
+    <Typography variant="h2" className={marginTopXxl}>
+      There's something's wrong...
+    </Typography>;
+  }
+
+  if (data) {
+    const { height, weight, types, stats, abilities, moves } = data?.pokemon;
+
+    return (
+      <div>
+        {generateModal(gotchaPossibility)}
 
         {data && (
           <>

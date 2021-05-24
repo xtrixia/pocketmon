@@ -72,6 +72,10 @@ function Navbar() {
         position: sticky;
         top: 0;
         z-index: 1;
+        @media (min-width: ${BREAKPOINTS.md}) {
+          max-width: ${BREAKPOINTS.md};
+          margin: 0 auto;
+        }
       `}
     >
       <div className={clsx(topHeader, isHomePage && logoCenter)}>

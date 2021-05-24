@@ -10,7 +10,7 @@ function Button({ children, className, fullWidth, type, ...props }) {
       className={clsx(
         className,
         css`
-          width: ${fullWidth ? "100%" : "fit-content"};
+          width: ${fullWidth ? "100%" : "auto"};
           padding: ${SPACINGS.xs};
           background: ${type === "outline" ? "none" : COLORS.white};
           box-shadow: ${type === "outline" ? 0 : "2px 2px"};

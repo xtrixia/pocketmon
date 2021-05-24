@@ -15,8 +15,6 @@ const landscape = css``;
 const potrait = css`
   flex-direction: column;
   width: 150px;
-  @media (min-width: ${BREAKPOINTS.sm}) {
-  }
 `;
 
 const landscapeImg = css`

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokeCard should render landscape and clickable 1`] = `
+<a
+  className="css-0 css-1cum9qf css-56ur96"
+  href="/profile/ivysaur?img=https://cdn.logo.com/hotlink-ok/logo-social.png"
+  onClick={[Function]}
+>
+  <img
+    alt="ivysaur"
+    className="css-1vwu78b css-vj9s6h css-1uvtpmm"
+    src="https://cdn.logo.com/hotlink-ok/logo-social.png"
+  />
+  <div
+    className="css-173zd6x"
+  >
+    <p
+      className="css-ebjej3"
+    >
+      ivysaur
+    </p>
+    <p
+      className="css-1ohcemi css-qgsv95"
+    >
+      You've owned: 
+      0
+    </p>
+  </div>
+</a>
+`;
+
+exports[`PokeCard should render potrait 1`] = `
+<div
+  className="css-0 css-1cum9qf"
+>
+  <img
+    alt="ivysaur"
+    className="css-1vwu78b css-vj9s6h css-1uvtpmm"
+    src="https://cdn.logo.com/hotlink-ok/logo-social.png"
+  />
+  <div
+    className="css-173zd6x"
+  >
+    <p
+      className="css-ebjej3"
+    >
+      ivysaur
+    </p>
+    <a
+      className="css-j662fd css-17iszpw"
+      href="/profile/ivysaur?img=https://cdn.logo.com/hotlink-ok/logo-social.png"
+      onClick={[Function]}
+    >
+      djoko
+    </a>
+  </div>
+</div>
+`;

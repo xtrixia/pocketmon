@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokeLabel render correctly 1`] = `
+<p
+  className="css-1j15uqv css-fxinwe css-y31snc"
+>
+  mystic
+</p>
+`;

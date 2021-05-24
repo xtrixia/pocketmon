@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextBox should render correctly according to passed props 1`] = `
+<fieldset
+  className="css-ur5llr"
+>
+  <label
+    className="css-1a6u95k"
+    htmlFor="input-nickname-field"
+  >
+    Nickname
+  </label>
+  <input
+    className="css-1cn7waq"
+    id="input-nickname-field"
+    name="input-nickname-field"
+    placeholder="Input nickname here"
+    type="text"
+    value=""
+  />
+  <span
+    className="css-1eztcs5"
+  />
+</fieldset>
+`;
+
+exports[`TextBox should render with helper text below 1`] = `
+<fieldset
+  className="css-ur5llr"
+>
+  <label
+    className="css-1a6u95k"
+  />
+  <input
+    className="css-1cn7waq"
+    placeholder="Input short info about you"
+    type="text"
+    value=""
+  />
+  <span
+    className="css-1eztcs5"
+  >
+    This is just short info
+  </span>
+</fieldset>
+`;

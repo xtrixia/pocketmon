@@ -1,4 +1,4 @@
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { css } from "@emotion/css";
 import clsx from "clsx";
 
@@ -150,4 +150,4 @@ function generateDescriptionTag(isClickable, text, url) {
   );
 }
 
-export default withRouter(PokeCard);
+export default PokeCard;

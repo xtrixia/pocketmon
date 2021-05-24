@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokeImg render correctly 1`] = `
+<img
+  alt="something"
+  className="css-1vwu78b css-owkuzg"
+  src="https://cdn.logo.com/hotlink-ok/logo-social.png"
+/>
+`;

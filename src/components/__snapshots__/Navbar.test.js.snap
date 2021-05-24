@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar should render correctly 1`] = `
+<header
+  className="css-7zvtlh"
+>
+  <div
+    className="css-1y2wuqc css-xf7v2y"
+  >
+    <img
+      alt="Pockétmon logo"
+      className="css-1uu0sh9 css-1dn73mw"
+      height="80px"
+      loading="lazy"
+      onClick={[Function]}
+      role="button"
+      sizes="(max-width: 400px) 200px, 400px"
+      src="https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png"
+      srcSet="https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png 200w, https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png 400w"
+      tabIndex={0}
+      width="200px"
+    />
+  </div>
+</header>
+`;

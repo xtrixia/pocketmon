@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal should render correctly 1`] = `
+<div
+  className="css-16e2dkp"
+>
+  <div
+    className="css-153gz4b"
+  >
+    <p
+      className="css-1alkoj4"
+    >
+      This is modal
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Modal should render transparently 1`] = `
+<div
+  className="css-16e2dkp"
+>
+  <div
+    className="css-kdxjg9"
+  >
+    <p>
+      This is modal
+    </p>
+  </div>
+</div>
+`;

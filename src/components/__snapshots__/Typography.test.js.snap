@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography render text passed from props 1`] = `
+<p
+  className="css-qgsv95"
+>
+  Hello world
+</p>
+`;
+
+exports[`Typography should render all variants 1`] = `
+<p
+  className="css-udnpao"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 2`] = `
+<p
+  className="css-1alkoj4"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 3`] = `
+<p
+  className="css-1hr3cp7"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 4`] = `
+<p
+  className="css-1i2j11s"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 5`] = `
+<p
+  className="css-1ke7tdd"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 6`] = `
+<p
+  className="css-3wutzz"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 7`] = `
+<p
+  className="css-cymwmk"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 8`] = `
+<p
+  className="css-ebjej3"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 9`] = `
+<p
+  className="css-y31snc"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render all variants 10`] = `
+<p
+  className="css-qgsv95"
+>
+  Hello
+</p>
+`;
+
+exports[`Typography should render variant body by default 1`] = `
+<p
+  className="css-qgsv95"
+>
+  Hello world
+</p>
+`;

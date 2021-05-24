@@ -2,7 +2,7 @@
 
 exports[`Button onClick function works as expected 1`] = `
 <button
-  className="css-14uyppl"
+  className="css-be7izb"
   id="btn-click-here"
   onClick={
     [MockFunction] {
@@ -24,7 +24,7 @@ exports[`Button onClick function works as expected 1`] = `
 
 exports[`Button rendered with unique id passed from props 1`] = `
 <button
-  className="css-14uyppl"
+  className="css-be7izb"
   id="btn-click-here"
 >
   Click here

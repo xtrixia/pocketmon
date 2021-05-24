@@ -101,11 +101,14 @@ function Detail({ match, location }) {
     setToggleAbilityInfo(emptyAbilityInfo);
   };
 
-  const [gotchaPossibility, setGotchaPossibility] = useState();
+  const [gotchaPossibility, setGotchaPossibility] = useState(3);
 
   const [nickname, setNickname] = useState("");
 
-  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState({
+    info: undefined,
+    error: false,
+  });
 
   const [persistedPokemons, setPersistedPokemons] = useLocalStorage(
     "pokemons",
@@ -121,13 +124,20 @@ function Detail({ match, location }) {
   };
 
   const handleInputNickname = (e) => {
-    setIsNicknameDuplicate(false);
+    setIsNicknameDuplicate({ ...isNicknameDuplicate, error: false });
     setNickname(e.target.value);
+
+    if (e.target.value.length < 3) {
+      setIsNicknameDuplicate({
+        info: "Nickname should be at least 3 characters",
+        error: true,
+      });
+    }
   };
 
   const handleCloseModal = () => {
     setNickname("");
-    setGotchaPossibility();
+    setGotchaPossibility(3);
   };
 
   const handleAddToMyPocket = () => {
@@ -152,8 +162,15 @@ function Detail({ match, location }) {
         (pocket) => pocket.nickname === nickname
       );
     }
-    if (checkInputNickname !== -1) setIsNicknameDuplicate(true);
-    else handleAddToMyPocket();
+
+    if (checkInputNickname !== -1) {
+      setIsNicknameDuplicate({
+        info: `You already named ${
+          nickname || currentPokemonName
+        } for your other Pokémon`,
+        error: true,
+      });
+    } else handleAddToMyPocket();
   };
 
   const generateModal = (state) => {
@@ -196,12 +213,7 @@ function Detail({ match, location }) {
               value={nickname}
               onSearch={handleInputNickname}
               isError={isNicknameDuplicate}
-              helperText={
-                isNicknameDuplicate &&
-                `You already named ${
-                  nickname || currentPokemonName
-                } for your other Pokémon`
-              }
+              helperText={isNicknameDuplicate.error && isNicknameDuplicate.info}
             />
             <div
               className={css`
@@ -240,7 +252,7 @@ function Detail({ match, location }) {
                   position: absolute;
                   right: 0;
                 `}
-                onClick={() => setGotchaPossibility(-1)}
+                onClick={handleCloseModal}
               >
                 <PokeImg
                   img="https://ik.imagekit.io/xtrixia/Pocketmon/close-circle_8HdsOq3Bi.svg"
@@ -304,7 +316,11 @@ function Detail({ match, location }) {
     const { height, weight, types, stats, abilities, moves } = data?.pokemon;
 
     return (
-      <div>
+      <div
+        className={css`
+          padding: ${SPACINGS.sm} ${SPACINGS.lg};
+        `}
+      >
         {generateModal(gotchaPossibility)}
 
         {data && (
@@ -505,7 +521,12 @@ function Detail({ match, location }) {
   }
 
   return (
-    <Typography variant="h2" className={marginTopXxl}>
+    <Typography
+      variant="h2"
+      className={css`
+        padding: ${SPACINGS.sm} ${SPACINGS.lg};
+      `}
+    >
       Loading...
     </Typography>
   );

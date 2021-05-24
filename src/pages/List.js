@@ -94,7 +94,11 @@ function List() {
   }
 
   return (
-    <>
+    <div
+      className={css`
+        padding: ${SPACINGS.sm} ${SPACINGS.lg};
+      `}
+    >
       {persistedPokemons?.length ? (
         <Typography
           variant="h4"
@@ -172,7 +176,7 @@ function List() {
           </Button>
         </>
       ) : null}
-    </>
+    </div>
   );
 }
 

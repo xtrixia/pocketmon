@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { withRouter } from "react-router-dom";
 import { css } from "@emotion/css";
@@ -13,7 +13,6 @@ import { GET_POKEMONS } from "../graphql/queries";
 import { SPACINGS } from "../root/spacings";
 import { COLORS } from "../root/colors";
 import {
-  fontBold,
   marginBottomMd,
   marginBottomXxl,
   marginTopMd,
@@ -24,26 +23,40 @@ import {
 import { useLocalStorage } from "../helpers";
 
 function List() {
+  const observerRef = useRef(null);
+
   const [offset, setOffset] = useState(0);
+
+  const [shouldLoadMore, setShouldLoadMore] = useState(false);
 
   const [pokedex, setPokedex] = useState([]);
 
-  const [fetchPokedex, { loading, error, data }] = useLazyQuery(GET_POKEMONS, {
+  const [fetchPokedex, { loading, error }] = useLazyQuery(GET_POKEMONS, {
     fetchPolicy: "cache-first",
+    onCompleted: (res) => {
+      setOffset(res?.pokemons?.nextOffset);
+      setPokedex(pokedex.concat(res?.pokemons?.results));
+      setShouldLoadMore(false);
+    },
   });
 
-  useEffect(() => {
-    fetchPokedex({ offset: 0 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const handleObserver = ([loadMoreEl]) => {
+    if (loadMoreEl && loadMoreEl.isIntersecting) {
+      setShouldLoadMore(true);
+    }
+  };
 
   useEffect(() => {
-    if (data?.pokemons?.results) {
-      setOffset(data?.pokemons?.nextOffset);
-      setPokedex(pokedex.concat(data?.pokemons?.results));
-    }
+    let observer = new IntersectionObserver(handleObserver, { threshold: 1.0 });
+    let target = document.getElementById("list-load-barrier");
+
+    if (target) observer.observe(target);
+    observerRef.current = observer;
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [offset]);
 
   const [persistedPokemons] = useLocalStorage("pokemons", []);
 
@@ -56,11 +69,21 @@ function List() {
     }
   });
 
+  // FETCH DATASOURCE ON FIRST RENDER, OFFSET 0
+  useEffect(() => {
+    fetchPokedex({ offset: 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loadMorePokedex = () => {
-    fetchPokedex({
-      variables: { offset },
-    });
+    fetchPokedex({ offset });
   };
+
+  useEffect(() => {
+    if (shouldLoadMore) {
+      fetchPokedex({ variables: { offset } });
+    }
+  }, [shouldLoadMore, offset, fetchPokedex]);
 
   if (error) {
     return (
@@ -114,22 +137,13 @@ function List() {
 
       {pokedex.length && !!offset ? (
         <>
-          <Button
-            id="load-intersection"
-            className={clsx(
-              marginBottomMd,
-              marginTopMd,
-              textAlignCenter,
-              fontBold,
-              css`
-                width: 100%;
-                font-family: Karla, sans-serif;
-              `
-            )}
+          <Typography
+            id="list-load-barrier"
+            className={clsx(marginBottomMd, marginTopMd, textAlignCenter)}
             onClick={loadMorePokedex}
           >
             Load more
-          </Button>
+          </Typography>
 
           <Button
             className={css`

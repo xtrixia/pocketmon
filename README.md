@@ -1,4 +1,4 @@
-![Pockétmon](https://ik.imagekit.io/xtrixia/Pocketmonlogo_P55Zd2ZuZ.svg)
+![Pockétmon](https://ik.imagekit.io/xtrixia/PoCKéTMoN_K8wj-F3Wm.png)
 
 Your pocket-size Pokémon website. Built with ❤️
 
@@ -19,8 +19,7 @@ Your pocket-size Pokémon website. Built with ❤️
 │ ├ helpers/        # helper functions
 │ ├ pages/          # components per route
 │ ├ root/           # palette configuration for theming, etc
-│ ├ index.js        # setup main DOM and routes
-│ └ setupTests.js   # setup test file
+│ └ index.js        # setup main DOM and routes
 └ package.json      # contains dependencies used
 ```
 
